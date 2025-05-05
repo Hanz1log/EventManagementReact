@@ -23,3 +23,11 @@ code {
 .navbar-nav{
   margin-left: auto !important;
 }
+
+.smallimg{
+  height: 200px;
+  width: 100% !important;
+}
+h1{
+  font-size: 20px !important;
+}

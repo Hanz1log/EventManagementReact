@@ -1,31 +1,55 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Venue from '../components/Venue';
 
 const Homesceen = () => {
- 
-  const [data, setData] = useState([])
+
+  const [venues, setVenue] = useState([])
+  const [loading, setloading] = useState()
+  const [error, seterror] = useState()
 
   useEffect(() => {
-    const fetchData = async () =>{
- 
+    const fetchData = async () => {
+
       try {
-        const {data: response} = await axios.get('/api/venues/getallvenues');
-        setData(response);
+        setloading(true)
+        const { data: response } = await axios.get('/api/venues/getallvenues');
+
+        setVenue(response);
+        setloading(false)
+
       } catch (error) {
+        seterror(error)
         console.error(error.message);
+        setloading(false)
+
       }
-  
+
     }
 
     fetchData();
   }, []);
 
-  return (
-    <div>
-    <h1> Home Screen </h1>
-      <h1>there are {data.length} venue</h1>
 
+  return (
+    <div className='container'>
+      <div className="row justify-content mt-5">
+        {loading ? (
+          <h1>loading....</h1>
+        ) : error ? (
+        <h1>Error</h1>
+        ) : (
+          venues.map(venue => {
+
+          return <div className="col-md-9 mt-2">
+                <Venue venue={venue}/>
+            </div>;
+         })
+        )}
+      </div>
     </div>
   )
 }
+
+
 export default Homesceen;
