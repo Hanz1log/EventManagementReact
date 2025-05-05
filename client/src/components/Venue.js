@@ -1,6 +1,7 @@
-import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
+import React, { useState } from 'react';
+import { Modal, Button} from 'react-bootstrap';
+import Carousel from 'react-bootstrap/Carousel';
+
 
 function Venue({venue}) {
   const [show, setShow] = useState(false);
@@ -23,25 +24,35 @@ function Venue({venue}) {
                
 
                 <div style={{float: 'right'}}>
-                    <button className='btn btn-primary'>View Details</button>
+                    <button className="btn btn-primary" onClick={handleShow}>
+                      View Details</button>
 
                 </div>
         </div>
-        <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
-      </Button>
+      
+      <Modal show={show} onHide={handleClose} size = 'lg'>
+        <Modal.Header>
+          <Modal.Title>{venue.name}</Modal.Title>
+        </Modal.Header>  
+        <Modal.Body>
 
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
+                  <Carousel>
+                       {venue.imageurls.map(url => {
+                        return <Carousel.Item>
+                           <img
+                           className="d-block w-100 bigimg"
+                            src={url}
+       
+                              />
+                    </Carousel.Item>
+                                })}
+                    </Carousel>
+
+        </Modal.Body>
+        <p>{venue.description}</p>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
           </Button>
         </Modal.Footer>
       </Modal>
