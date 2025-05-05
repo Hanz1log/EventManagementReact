@@ -5,8 +5,9 @@ import Venue from '../components/Venue';
 const Homesceen = () => {
 
   const [venues, setVenue] = useState([])
-  const [loading, setloading] = useState()
-  const [error, seterror] = useState()
+  const [loading, setloading] = useState(false);
+const [error, seterror] = useState(null);
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,12 +40,12 @@ const Homesceen = () => {
         ) : error ? (
         <h1>Error</h1>
         ) : (
-          venues.map(venue => {
-
-          return <div className="col-md-9 mt-2">
-                <Venue venue={venue}/>
-            </div>;
-         })
+          venues.map(venue => (
+            <div key={venue._id} className="col-md-9 mt-2">
+              <Venue venue={venue} />
+            </div>
+          ))
+          
         )}
       </div>
     </div>
