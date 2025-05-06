@@ -14,7 +14,7 @@ code {
     monospace;
 }
 .navbar {
-  background-color: #f8f5e4 !important; /* light cream-beige */
+  background-color: #dfe8dc !important;
   padding: 0.8rem 2rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
@@ -23,7 +23,7 @@ code {
 .navbar-brand {
   font-weight: 600;
   font-size: 1.2rem;
-  color: #2a3d2f !important; /* muted dark green */
+  color: #2a3d2f !important; 
   letter-spacing: 0.5px;
 
   font-family: 'Montserrat', sans-serif;
@@ -52,7 +52,7 @@ code {
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: #4e6657; /* highlight line color */
+  background-color: #4e6657; 
   transition: width 0.3s ease-in-out;
 }
 

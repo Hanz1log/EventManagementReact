@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Venue from '../components/Venue';
-
+import Loader from '../components/Loader';
+import Error from '../components/Error';
 const Homesceen = () => {
 
   const [venues, setVenue] = useState([])
@@ -9,43 +10,45 @@ const Homesceen = () => {
 const [error, seterror] = useState(null);
 
 
-  useEffect(() => {
-    const fetchData = async () => {
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      setloading(true);
+      const { data: response } = await axios.get('/api/venues/getallvenues');
 
-      try {
-        setloading(true)
-        const { data: response } = await axios.get('/api/venues/getallvenues');
-
-        setVenue(response);
-        setloading(false)
-
-      } catch (error) {
-        seterror(error)
-        console.error(error.message);
-        setloading(false)
-
-      }
-
+      setVenue(response);
+    
+      setTimeout(() => {
+        setloading(false);
+      }, 800); 
+    } catch (error) {
+      seterror(error);
+      console.error(error.message);
+      setloading(false); 
     }
+  };
 
-    fetchData();
-  }, []);
+  fetchData();
+}, []);
+
 
 
   return (
     <div className='container'>
       <div className="row justify-content mt-5">
         {loading ? (
-          <h1>loading....</h1>
-        ) : error ? (
-        <h1>Error</h1>
-        ) : (
-          venues.map(venue => (
-            <div key={venue._id} className="col-md-9 mt-2">
-              <Venue venue={venue} />
-            </div>
-          ))
+          <Loader/>
+        ) : venues.length>1 ? (
+          venues.map((venue) => {
+            return (
+              <div key={venue._id} className="col-md-9 mt-2">
+                <Venue venue={venue} />
+              </div>
+            );
+          })
           
+        ) : (
+          <Error/>
         )}
       </div>
     </div>
