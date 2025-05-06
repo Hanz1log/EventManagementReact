@@ -1,25 +1,31 @@
 import React, {useState, useEffect} from 'react'
+import axios from "axios";
 
 function Registerscreen() {
-  const[username, setusername] = useState('')
+  const[name, setname] = useState('')
   const[password, setpassword] = useState('')
   const[cpassword, setcpassword] = useState('')
   const[email, setemail] = useState('')
   const[contact, setcontact] = useState('')
 
-  function register(){
+  async function register(){
    
     if(password == cpassword)
     {
       const user=
       {
-        username,
+        name,
         password,
-        cpassword,
         email,
         contact
       }
-      console.log(user)
+      try {
+        const result = await axios.post('/api/users/register', user)
+
+        
+      } catch (error) {
+        console.log(error)
+      }
     }
     else{
       alert('passwords do not match')
@@ -32,7 +38,7 @@ function Registerscreen() {
               <div className='bs'>
                 <h2>Register</h2>
                 <input type = "text" className="form-control" placeholder="username" 
-                value={username} onChange= {(e)=>{setusername(e.target.value)}}/>
+                value={name} onChange= {(e)=>{setname(e.target.value)}}/>
                 <input type = "text" className="form-control" placeholder="email"
                 value={email} onChange= {(e)=>{setemail(e.target.value)}}/>
                 <input type = "text" className="form-control" placeholder="contact information #"
