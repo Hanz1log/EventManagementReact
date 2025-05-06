@@ -89,3 +89,14 @@ h1{
   height: auto;
   object-fit: cover;
 }
+input{
+  box-shadow: none !important;
+  margin-top: 10px;
+  border: 1px solid black !important;
+}
+h2{
+  font-size: 35px !important;
+  padding: 10px !important;
+  font-weight: bold !important;
+  text-align: center !important;
+}
