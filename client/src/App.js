@@ -1,8 +1,8 @@
 import './App.css';
-
 import Navbar from './components/Navbar';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Homescreen from './screens/Homescreen';
+import Bookingscreen from './screens/bookingscreen';
 
 function App() {
   return (
@@ -11,6 +11,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/home" element={<Homescreen />} />
+          <Route path="/book/:venueid" element={<Bookingscreen />} />
         </Routes>
       </div>
     </BrowserRouter>
