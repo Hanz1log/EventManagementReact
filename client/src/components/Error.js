@@ -1,10 +1,10 @@
 import React from 'react'
 
-export default function Error() {
+export default function Error({message}) {
   return (
     <div>
         <div class="alert alert-danger" role="alert">
-             Something went wrong, please try again later...
+             {message}
         </div>
     </div>
   )

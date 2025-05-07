@@ -36,3 +36,6 @@
     transform: rotate(360deg);
   }
 }
+.navbar .dropdown-toggle {
+  text-decoration: none !important;
+}
