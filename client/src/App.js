@@ -13,7 +13,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/home" element={<Homescreen />} />
-          <Route path="/book/:venueid" element={<Bookingscreen />} />
+          <Route path="/book/:venueid/:fromdate/:todate" element={<Bookingscreen />} />
           <Route path ='/register' element= {<Registerscreen/>}/>
           <Route path = 'login' element= {<Loginscreen/>}/>
         </Routes>
