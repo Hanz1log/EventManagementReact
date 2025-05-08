@@ -38,20 +38,23 @@ function Bookingscreen() {
   async function bookVenue() {
     const bookingDetails = {
       venue,
-      user: JSON.parse(localStorage.getItem('currentUser'))._id,
+      userid: JSON.parse(localStorage.getItem('currentUser'))._id, 
       fromdate: formattedFromDate.format('DD-MM-YYYY'),
       todate: formattedToDate.format('DD-MM-YYYY'),
       totalamount: totalAmount,
       totaldays: totaldays,
     };
+    
 
     try {
       const result = await axios.post('/api/bookings/bookvenue', bookingDetails);
+      console.log(result.data); // Should show: { message: 'Room Booked Successfully' }
       alert("Booking Successful!");
     } catch (error) {
       console.error("Booking error:", error.response?.data || error.message);
       alert("Booking Failed. Please try again.");
     }
+    
   }
 
   return (
