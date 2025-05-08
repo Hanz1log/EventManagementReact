@@ -21,9 +21,14 @@ function Venue({ venue, fromdate, todate }) {
         <p><b>Type :</b> {venue.type}</p>
 
         <div style={{ float: 'right' }}>
-          <Link to={`/book/${venue._id}/${fromdate}/${todate}`}>
+
+          {(fromdate && todate) && (
+            <Link to={`/book/${venue._id}/${fromdate}/${todate}`}>
             <button className='btn btn-primary m-2'>Book Now</button>
           </Link>
+          )}
+
+          
           <button className="btn btn-primary" onClick={handleShow}>
             View Details
           </button>
