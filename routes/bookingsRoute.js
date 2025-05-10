@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Booking = require("../models/booking");
 const Venue = require("../models/venue");
-
+const stripe = require('stripe')('sk_test_51RMlG33EWaLSoTWPWf7h6MiY48k4dbN9ZrDkmpqIvE6v7v7ZFbaVneLNHiLwfp0KpU0mbre4l9jXGC984vwGhZ1p007vLlfgHe')
 router.post("/bookvenue", async (req, res) => {
   const {
     venue,

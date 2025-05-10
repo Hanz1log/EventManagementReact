@@ -21,7 +21,6 @@ function Venue({ venue, fromdate, todate }) {
         <p><b>Type :</b> {venue.type}</p>
 
         <div style={{ float: 'right' }}>
-
           {(fromdate && todate) && (
             <Link to={`/book/${venue._id}/${fromdate}/${todate}`}>
             <button className='btn btn-primary m-2'>Book Now</button>

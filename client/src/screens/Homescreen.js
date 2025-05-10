@@ -58,7 +58,7 @@ function Homesceen() {
         const bookingStart = booking.fromdate;
         const bookingEnd = booking.todate;
 
-        // Check for date overlap
+ 
         if (!(to < bookingStart || from > bookingEnd)) {
           available = false;
           break;
