@@ -17,6 +17,9 @@ function Homesceen() {
   const [fromdate, setFromDate] = useState();
   const [todate, setToDate] = useState();
 
+  const [searchkey, setsearchkey] = useState('');
+  const [type, settype] = useState('all');
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -53,43 +56,81 @@ function Homesceen() {
 
     const tempVenues = duplicatevenues.filter(venue => {
       let available = true;
-
       for (const booking of venue.currentbookings) {
         const bookingStart = booking.fromdate;
         const bookingEnd = booking.todate;
-
- 
         if (!(to < bookingStart || from > bookingEnd)) {
           available = false;
           break;
         }
       }
-
       return available;
     });
 
     setVenue(tempVenues);
   }
 
+  function filterBySearch() {
+    const tempvenues = duplicatevenues.filter(venue =>
+      venue.name.toLowerCase().includes(searchkey.toLowerCase())
+    );
+    setVenue(tempvenues);
+  }
+
+  function filterByType(e) {
+    settype(e.target.value);
+    const selectedType = e.target.value;
+
+    if (selectedType === 'all') {
+      setVenue(duplicatevenues);
+    } else {
+      const tempvenues = duplicatevenues.filter(
+        venue => venue.type.toLowerCase() === selectedType.toLowerCase()
+      );
+      setVenue(tempvenues);
+    }
+  }
+
   return (
     <div className='container'>
-      <div className='row mt-5'>
+      <div className='row mt-5 bs'>
         <div className='col-md-3'>
           <RangePicker format='DD-MM-YYYY' onChange={filterByDate} />
+        </div>
+
+        <div className="col-md-5">
+          <input
+            type="text"
+            className='form-control'
+            placeholder='Search venues'
+            value={searchkey}
+            onChange={(e) => setsearchkey(e.target.value)}
+            onKeyUp={filterBySearch}
+          />
+        </div>
+
+        <div className="col-md-3">
+          <select className='form-control' value={type} onChange={filterByType}>
+            <option value="all">All</option>
+            <option value="Function Hall">Function Hall</option>
+            <option value="Resort">Conference Room</option>
+            <option value="Garden">Garden View</option>
+            <option value="Garden">Roof Top</option>
+          </select>
         </div>
       </div>
 
       <div className='row justify-content mt-5'>
         {loading ? (
           <Loader />
-        ) : venues.length > 0 ? (
+        ) : error ? (
+          <Error />
+        ) : (
           venues.map((venue) => (
             <div key={venue._id} className='col-md-9 mt-2'>
               <Venue venue={venue} fromdate={fromdate} todate={todate} />
             </div>
           ))
-        ) : (
-          <Error />
         )}
       </div>
     </div>

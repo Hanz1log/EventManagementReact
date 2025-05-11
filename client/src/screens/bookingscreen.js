@@ -1,4 +1,4 @@
-// Bookingscreen.js
+
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -16,6 +16,9 @@ import {
   useElements
 } from "@stripe/react-stripe-js";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const stripePromise = loadStripe("pk_test_51RMlG33EWaLSoTWPLRrSMRfR1E1a2RzT3VWG2TAbM8WrSuU3x9dxKppIymO9CEfHfGMNQmVo4ZHHCvDVyNbFGRw600OFQtyfA6");
 
 function CheckoutForm({ bookingDetails }) {
@@ -23,24 +26,28 @@ function CheckoutForm({ bookingDetails }) {
   const elements = useElements();
 
   const handlePayment = async () => {
-    const { data: clientSecret } = await axios.post("/api/payments/create-payment-intent", {
-      amount: bookingDetails.totalamount * 100,
-    });
+    try {
+      const { data: clientSecret } = await axios.post("/api/payments/create-payment-intent", {
+        amount: bookingDetails.totalamount * 100,
+      });
 
-    const result = await stripe.confirmCardPayment(clientSecret, {
-      payment_method: {
-        card: elements.getElement(CardElement),
-        billing_details: {
-          name: bookingDetails.username
+      const result = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: elements.getElement(CardElement),
+          billing_details: {
+            name: bookingDetails.username
+          }
         }
-      }
-    });
+      });
 
-    if (result.error) {
-      alert("Payment failed: " + result.error.message);
-    } else if (result.paymentIntent.status === "succeeded") {
-      await axios.post("/api/bookings/bookvenue", bookingDetails);
-      alert("Booking and Payment Successful!");
+      if (result.error) {
+        toast.error("Payment failed: " + result.error.message);
+      } else if (result.paymentIntent.status === "succeeded") {
+        await axios.post("/api/bookings/bookvenue", bookingDetails);
+        toast.success("Booking and Payment Successful!");
+      }
+    } catch (err) {
+      toast.error("Something went wrong: " + err.message);
     }
   };
 
@@ -66,9 +73,14 @@ function Bookingscreen() {
 
   useEffect(() => {
     const fetchVenue = async () => {
-      const { data } = await axios.post("/api/venues/getvenuebyid", { venueid });
-      setVenue(data);
-      setLoading(false);
+      try {
+        const { data } = await axios.post("/api/venues/getvenuebyid", { venueid });
+        setVenue(data);
+        setLoading(false);
+      } catch (err) {
+        toast.error("Failed to fetch venue details.");
+        setLoading(false);
+      }
     };
     fetchVenue();
   }, [venueid]);
@@ -87,6 +99,7 @@ function Bookingscreen() {
     <Loader />
   ) : venue ? (
     <div className="container mt-5">
+      <ToastContainer />
       <div className="row bs">
         <div className="col-md-6">
           <h5>{venue.name}</h5>

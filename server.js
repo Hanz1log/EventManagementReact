@@ -13,6 +13,7 @@ const userRoute = require('./routes/usersRoute');
 const bookingRoute = require('./routes/bookingsRoute');
 
 
+app.use('/api', bookingRoute);
 app.use('/api/payments', paymentsRoute);
 app.use('/api/venues', venueRoute); 
 app.use('/api/users', userRoute);
