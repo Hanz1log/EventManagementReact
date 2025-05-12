@@ -39,10 +39,11 @@ function Navbar() {
                   aria-expanded="false"
                   style={{ textDecoration: 'none' }}
                 >
-                 {user.name}
+                  {user.name}
                 </a>
 
                 <ul className="dropdown-menu dropdown-menu-end">
+                  <li><a className="dropdown-item" href="/home">Book</a></li> 
                   <li><a className="dropdown-item" href="/profile">Profile</a></li>
                   <li><a className="dropdown-item" href="#" onClick={logout}>Logout</a></li>
                 </ul>

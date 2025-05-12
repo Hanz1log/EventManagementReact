@@ -57,5 +57,27 @@ router.post('/getbookingsbyuserid', async (req, res) => {
   }
 });
 
+router.post("/cancelbooking", async (req, res) => {
+  const { bookingid, venueid } = req.body;
+
+  try {
+  
+    const booking = await Booking.findOne({ _id: bookingid });
+    booking.status = "cancelled";
+    await booking.save();
+
+   
+    const venue = await Venue.findOne({ _id: venueid });
+    venue.currentbookings = venue.currentbookings.filter(
+      b => b.bookingid.toString() !== bookingid
+    );
+    await venue.save();
+
+    res.send("Booking cancelled successfully");
+  } catch (error) {
+    console.error("Cancel Booking Error:", error);
+    res.status(400).json({ error: "Cancel failed", details: error.message });
+  }
+});
 
 module.exports = router;

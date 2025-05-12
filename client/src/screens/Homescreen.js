@@ -81,14 +81,28 @@ function Homesceen() {
     settype(e.target.value);
     const selectedType = e.target.value;
 
-    if (selectedType === 'all') {
-      setVenue(duplicatevenues);
-    } else {
-      const tempvenues = duplicatevenues.filter(
-        venue => venue.type.toLowerCase() === selectedType.toLowerCase()
-      );
-      setVenue(tempvenues);
-    }
+    const tempvenues = duplicatevenues.filter(venue => {
+      const matchesType =
+        selectedType === 'all' ||
+        venue.type.toLowerCase() === selectedType.toLowerCase();
+
+      let available = true;
+
+      if (fromdate && todate) {
+        for (const booking of venue.currentbookings) {
+          const bookingStart = booking.fromdate;
+          const bookingEnd = booking.todate;
+          if (!(todate < bookingStart || fromdate > bookingEnd)) {
+            available = false;
+            break;
+          }
+        }
+      }
+
+      return matchesType && available;
+    });
+
+    setVenue(tempvenues);
   }
 
   return (
@@ -115,7 +129,7 @@ function Homesceen() {
             <option value="Function Hall">Function Hall</option>
             <option value="Resort">Conference Room</option>
             <option value="Garden">Garden View</option>
-            <option value="Garden">Roof Top</option>
+            <option value="Roof">Roof Top</option>
           </select>
         </div>
       </div>
@@ -125,6 +139,10 @@ function Homesceen() {
           <Loader />
         ) : error ? (
           <Error />
+        ) : venues.length === 0 ? (
+          <div className="text-center mt-5">
+            <h5>No venues available for the selected filters.</h5>
+          </div>
         ) : (
           venues.map((venue) => (
             <div key={venue._id} className='col-md-9 mt-2'>
