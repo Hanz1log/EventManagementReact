@@ -83,10 +83,10 @@ function MyBookings() {
                     className="cancel-btn"
                     onClick={() => cancelBooking(booking._id, booking.venueid)}
                   >
+                    ❌ Cancel Booking
                   </button>
                 </div>
               )}
-
             </div>
           </div>
         ))}
