@@ -78,7 +78,7 @@ function MyBookings() {
               </p>
 
               {booking.status !== 'cancelled' && (
-                <div style={{ textAlign: 'right' }}>
+                <div style={{ textAlign: 'right', marginTop: '15px' }}>
                   <button
                     className="cancel-btn"
                     onClick={() => cancelBooking(booking._id, booking.venueid)}
@@ -86,6 +86,7 @@ function MyBookings() {
                   </button>
                 </div>
               )}
+
             </div>
           </div>
         ))}
