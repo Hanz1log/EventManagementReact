@@ -1,0 +1,40 @@
+.register-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(to right, #53be80, #2d3758);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.register-container {
+  width: 100%;
+  max-width: 500px;
+}
+
+.register-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.register-card h2 {
+  font-weight: 700;
+  color: #2a3d2f;
+}
+
+.register-btn {
+  background-color: #2a3d2f;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.register-btn:hover {
+  background-color: #4e6657;
+}
