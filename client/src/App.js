@@ -7,7 +7,7 @@ import Registerscreen from './screens/Registerscreen';
 import Loginscreen from './screens/Loginscreen';
 import Profilescreen from './screens/Profilescreen';
 import Adminscreen from './screens/Adminscreen';
-
+import LandingPage from './screens/LandingPage'; // ✅ add this
 
 function App() {
   return (
@@ -15,12 +15,13 @@ function App() {
       <div className="App">
         <Navbar />
         <Routes>
+          <Route path="/" element={<LandingPage />} /> {/* ✅ landing route */}
           <Route path="/home" element={<Homescreen />} />
           <Route path="/book/:venueid/:fromdate/:todate" element={<Bookingscreen />} />
           <Route path="/register" element={<Registerscreen />} />
           <Route path="/login" element={<Loginscreen />} />
           <Route path="/profile" element={<Profilescreen />} />
-          <Route path="/admin" element={<Adminscreen/>} />
+          <Route path="/admin" element={<Adminscreen />} />
         </Routes>
       </div>
     </BrowserRouter>

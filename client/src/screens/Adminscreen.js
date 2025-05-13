@@ -3,15 +3,15 @@ import { Tabs } from 'antd';
 import axios from 'axios';
 import Loader from "../components/Loader";
 import Error from "../components/Error";
-
+import Success from '../components/Success';
 const { TabPane } = Tabs;
 
 function Adminscreen() {
 
     useEffect(() => {
 
-        if(!JSON.parse(localStorage.getItem("currentUser")).isAdmin){
-            window.location.href='/home'
+        if (!JSON.parse(localStorage.getItem("currentUser")).isAdmin) {
+            window.location.href = '/home'
         }
 
     }, [])
@@ -35,8 +35,9 @@ function Adminscreen() {
                 </TabPane>
 
                 <TabPane tab="Add Venue" key="4">
-                    <h3>Add a New Venue</h3>
+                    <Addvenue />
                 </TabPane>
+
             </Tabs>
         </div>
     );
@@ -44,6 +45,7 @@ function Adminscreen() {
 
 export default Adminscreen;
 
+//Booking list Components
 export function Bookings() {
     const [bookings, setBookings] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -118,6 +120,7 @@ export function Bookings() {
     );
 }
 
+//Venue list Components
 export function Venues() {
     const [venues, setVenues] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -186,6 +189,8 @@ export function Venues() {
     );
 
 }
+
+//Users list Components
 export function Users() {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -256,5 +261,96 @@ export function Users() {
             </div>
         </div>
     );
+}
+
+//Add venue Component
+export function Addvenue() {
+  const [name, setName] = useState('');
+  const [rentperday, setRentPerDay] = useState('');
+  const [maxcount, setMaxCount] = useState('');
+  const [description, setDescription] = useState('');
+  const [phonenumber, setPhoneNumber] = useState('');
+  const [type, setType] = useState('');
+  const [imageurl1, setImageUrl1] = useState('');
+  const [imageurl2, setImageUrl2] = useState('');
+  const [imageurl3, setImageUrl3] = useState('');
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  async function addVenue() {
+    const venue = {
+      name,
+      rentperday,
+      maxcount,
+      description,
+      phonenumber,
+      type,
+      imageurls: [imageurl1, imageurl2, imageurl3],
+    };
+
+    try {
+      setLoading(true);
+      await axios.post('/api/venues/addvenue', venue);
+      setSuccess(true);
+      setLoading(false);
+      resetForm();
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+      setError(true);
+    }
+  }
+
+  const resetForm = () => {
+    setName('');
+    setRentPerDay('');
+    setMaxCount('');
+    setDescription('');
+    setPhoneNumber('');
+    setType('');
+    setImageUrl1('');
+    setImageUrl2('');
+    setImageUrl3('');
+  };
+
+  return (
+    <div className="d-flex justify-content-center">
+      <div className="p-4" style={{
+        background: '#fff',
+        borderRadius: '12px',
+        boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+        maxWidth: '950px',
+        width: '100%'
+      }}>
+        <h3 className="text-center mb-4" style={{ fontWeight: 'bold' }}>Add New Venue</h3>
+        {loading && <Loader />}
+        {error && <Error />}
+        {success && <Success message='Venue added successfully' />}
+
+        <div className="row">
+          <div className="col-md-6">
+            <input className="form-control mb-2" type="text" placeholder="Venue Name" value={name} onChange={(e) => setName(e.target.value)} />
+            <input className="form-control mb-2" type="text" placeholder="Rent per Day" value={rentperday} onChange={(e) => setRentPerDay(e.target.value)} />
+            <input className="form-control mb-2" type="text" placeholder="Max Count" value={maxcount} onChange={(e) => setMaxCount(e.target.value)} />
+            <input className="form-control mb-2" type="text" placeholder="Phone Number" value={phonenumber} onChange={(e) => setPhoneNumber(e.target.value)} />
+          </div>
+
+          <div className="col-md-6">
+            <input className="form-control mb-2" type="text" placeholder="Type (e.g. Garden View)" value={type} onChange={(e) => setType(e.target.value)} />
+            <input className="form-control mb-2" type="text" placeholder="Image URL 1" value={imageurl1} onChange={(e) => setImageUrl1(e.target.value)} />
+            <input className="form-control mb-2" type="text" placeholder="Image URL 2" value={imageurl2} onChange={(e) => setImageUrl2(e.target.value)} />
+            <input className="form-control mb-2" type="text" placeholder="Image URL 3" value={imageurl3} onChange={(e) => setImageUrl3(e.target.value)} />
+          </div>
+
+          <div className="col-md-12 mt-2">
+            <textarea className="form-control mb-3" rows="3" placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
+            <button onClick={addVenue} className="btn btn-primary w-100">Add Venue</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 

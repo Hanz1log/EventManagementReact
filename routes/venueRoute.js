@@ -20,6 +20,15 @@ router.post("/getvenuebyid", async (req, res) => {
     return res.status(400).json({ message: error });
   }
 });
+router.post('/addvenue', async (req, res) => {
+  try {
+    const newvenue = new Venue(req.body);
+    await newvenue.save();
+    res.send('Venue Added Successfully');
+  } catch (error) {
+    return res.status(400).json({ error });
+  }
+});
 
 
 module.exports = router;

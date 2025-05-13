@@ -10,8 +10,8 @@ function Navbar() {
 
   return (
     <div>
-      <nav className="navbar navbar-expand-lg">
-        <a className="navbar-brand" href="#">EventHorizon</a>
+      <nav className="navbar navbar-expand-lg custom-navbar">
+        <a className="navbar-brand text-light fw-bold" href="#">EventHorizon</a>
         <button
           className="navbar-toggler"
           type="button"
@@ -28,40 +28,37 @@ function Navbar() {
 
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
-
             {user ? (
               <li className="nav-item dropdown">
                 <a
-                  className="nav-link dropdown-toggle"
+                  className="nav-link dropdown-toggle text-light"
                   href="#"
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
-                  style={{ textDecoration: 'none' }}
                 >
                   {user.name}
                 </a>
-
                 <ul className="dropdown-menu dropdown-menu-end">
-                  <li><a className="dropdown-item" href="/home">Book</a></li> 
+                  <li><a className="dropdown-item" href="/home">Book</a></li>
                   <li><a className="dropdown-item" href="/profile">Profile</a></li>
-                  <li><a className="dropdown-item" href="#" onClick={logout}>Logout</a></li>
+                  <li><button className="dropdown-item" onClick={logout}>Logout</button></li>
                 </ul>
               </li>
             ) : (
               <>
                 <li className="nav-item">
-                  <a className="nav-link" href="/register">Register</a>
+  <a className="nav-link text-light" href="/register">Register</a>
+</li>
+
+                <li className="nav-item">
+                  <a className="nav-link text-light" href="/login">Login</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/login">Login</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/about">About</a>
+                  <a className="nav-link text-light" href="/about">About</a>
                 </li>
               </>
             )}
-
           </ul>
         </div>
       </nav>
