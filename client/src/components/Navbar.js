@@ -22,7 +22,7 @@ function Navbar() {
 
   function logout() {
     localStorage.removeItem('currentUser');
-    window.location.href = '/login';
+    window.location.href = '/';
   }
 
   function toggleTheme() {

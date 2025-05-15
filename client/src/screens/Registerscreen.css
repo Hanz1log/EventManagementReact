@@ -1,40 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;500&display=swap');
+
 .register-wrapper {
   min-height: 100vh;
-  background: linear-gradient(to right, #53be80, #2d3758);
+  background: linear-gradient(to right, #2a3d2f, #53be80);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2rem;
+  font-family: 'Inter', sans-serif;
 }
 
 .register-container {
   width: 100%;
   max-width: 500px;
+  animation: fadeIn 1s ease;
 }
 
 .register-card {
-  background-color: white;
-  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
   padding: 2.5rem;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .register-card h2 {
-  font-weight: 700;
+  font-weight: 800;
+  font-size: 32px;
   color: #2a3d2f;
+  margin-bottom: 1.5rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.register-card input {
+  width: 100%;
+  padding: 12px 16px;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-size: 15px;
+  font-family: 'Inter', sans-serif;
+}
+
+.register-card input:focus {
+  border-color: #2a3d2f;
+  outline: none;
+  box-shadow: 0 0 8px rgba(42, 61, 47, 0.2);
 }
 
 .register-btn {
   background-color: #2a3d2f;
   color: white;
-  padding: 12px;
+  padding: 14px;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   font-weight: 600;
   font-size: 16px;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  width: 100%;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
 }
 
 .register-btn:hover {
-  background-color: #4e6657;
+  background-color: #3d4e44;
+}
+
+/* Optional fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

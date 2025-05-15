@@ -10,7 +10,7 @@ function LandingPage() {
           Plan, organize, and execute unforgettable events with perfection.
           We make every moment count!
         </p>
-        <a href="/home" className="cta-btn">Book Now</a>
+        <a href="/login" className="cta-btn">Book Now</a>
       </div>
     </div>
   );
