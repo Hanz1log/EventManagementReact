@@ -7,15 +7,15 @@ import Registerscreen from './screens/Registerscreen';
 import Loginscreen from './screens/Loginscreen';
 import Profilescreen from './screens/Profilescreen';
 import Adminscreen from './screens/Adminscreen';
-import LandingPage from './screens/LandingPage'; // ✅ add this
+import LandingPage from './screens/LandingPage'; 
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/EventManagementReact">
       <div className="App">
         <Navbar />
         <Routes>
-          <Route path="/" element={<LandingPage />} /> {/* ✅ landing route */}
+          <Route path="/" element={<LandingPage />} /> 
           <Route path="/home" element={<Homescreen />} />
           <Route path="/book/:venueid/:fromdate/:todate" element={<Bookingscreen />} />
           <Route path="/register" element={<Registerscreen />} />
