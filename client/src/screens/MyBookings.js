@@ -22,7 +22,7 @@ function MyBookings() {
       setBookings(response.data);
       setLoading(false);
     } catch (err) {
-      console.log("Error fetching bookings:", err);
+      console.error("Error fetching bookings:", err);
       setError(true);
       setLoading(false);
     }
@@ -40,7 +40,7 @@ function MyBookings() {
       );
       setLoading(false);
     } catch (error) {
-      console.log("Cancel booking error:", error);
+      console.error("Cancel booking error:", error);
       setError(true);
       setLoading(false);
     }
@@ -53,26 +53,18 @@ function MyBookings() {
       {error && <Error />}
 
       <div className="row">
-        {bookings && bookings.map((booking, index) => (
+        {bookings.map((booking, index) => (
           <div className="col-md-6 mb-4" key={index}>
-            <div style={{
-              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-              borderRadius: '10px',
-              padding: '20px',
-              background: '#fff',
+            <div className="booking-card" style={{
               borderLeft: `5px solid ${booking.status === 'cancelled' ? '#e74c3c' : '#2ecc71'}`
             }}>
-              <h4 style={{ fontWeight: '600' }}>{booking.venue}</h4>
+              <h4>{booking.venue}</h4>
               <p><strong>Booking ID:</strong> {booking._id}</p>
               <p><strong>Check In:</strong> {booking.fromdate}</p>
               <p><strong>Check Out:</strong> {booking.todate}</p>
               <p><strong>Amount:</strong> ₱{booking.totalamount}</p>
               <p><strong>Status:</strong>
-                <span style={{
-                  fontWeight: 'bold',
-                  color: booking.status === 'cancelled' ? '#e74c3c' : '#2ecc71',
-                  marginLeft: '5px'
-                }}>
+                <span className={booking.status === 'cancelled' ? 'status-cancelled' : 'status-booked'}>
                   {booking.status.toUpperCase()}
                 </span>
               </p>

@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Tabs } from 'antd';
 import MyBookings from './MyBookings';
-import Loader from "../components/Loader";
-import Error from "../components/Error";
 
 const { TabPane } = Tabs;
 
@@ -19,17 +17,8 @@ function Profilescreen() {
     <div style={{ padding: '30px', fontFamily: `'Poppins', 'Segoe UI', sans-serif` }}>
       <Tabs defaultActiveKey="1" centered>
         <TabPane tab="Profile" key="1">
-          <div
-            style={{
-              maxWidth: '600px',
-              margin: '0 auto',
-              background: '#fff',
-              borderRadius: '12px',
-              padding: '30px',
-              boxShadow: '0 8px 24px rgba(0,0,0,0.08)',
-            }}
-          >
-            <h2 style={{ fontWeight: '600', marginBottom: '20px' }}>My Profile</h2>
+          <div className="profile-card">
+            <h2>My Profile</h2>
             <hr />
             <p><strong>Name:</strong> {user.name}</p>
             <p><strong>Email:</strong> {user.email}</p>
