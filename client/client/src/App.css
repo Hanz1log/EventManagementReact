@@ -1,0 +1,198 @@
+.App {
+  text-align: left;
+}
+
+
+.App-header {
+  align-items: center;
+  background-color: #282c34;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  font-size: calc(10px + 2vmin);
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.navbar .dropdown-toggle {
+  text-decoration: none !important;
+}
+
+.cancel-btn {
+  background-color: transparent;
+  border: 2px solid #e74c3c;
+  border-radius: 6px;
+  color: #e74c3c;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 18px;
+  transition: all 0.3s ease-in-out;
+}
+
+.cancel-btn:hover {
+  background-color: #e74c3c;
+  box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4);
+  color: white;
+  transform: translateY(-1px);
+}
+
+body.dark-mode {
+  background-color: #1f1f1f;
+  color: #f0f0f0;
+}
+
+body.dark-mode a,
+body.dark-mode .text-dark {
+  color: #f0f0f0 !important;
+}
+
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea {
+  background-color: #2c2c2c;
+  border: 1px solid #666;
+  color: #f0f0f0;
+}
+
+body.dark-mode input::placeholder,
+body.dark-mode select,
+body.dark-mode textarea::placeholder {
+  color: #aaa;
+}
+
+body.dark-mode .bs,
+body.dark-mode .card,
+body.dark-mode .table,
+body.dark-mode .ant-tabs-tabpane,
+body.dark-mode .tab-content,
+body.dark-mode .p-4 {
+  background-color: #2a2a2a !important;
+  border: 1px solid #555;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
+  color: #f0f0f0 !important;
+}
+
+body.dark-mode .table thead,
+body.dark-mode .table-dark {
+  background-color: #444;
+  color: #fff;
+}
+
+body.dark-mode .btn {
+  border-color: #aaa;
+}
+
+body.dark-mode .btn-primary {
+  background-color: #375a7f;
+  border-color: #375a7f;
+}
+
+body.dark-mode .btn-primary:hover {
+  background-color: #2c4561;
+}
+
+body.dark-mode .StripeElement {
+  background-color: #2a2a2a !important;
+  border: 1px solid #666 !important;
+  border-radius: 4px;
+  color: #f0f0f0 !important;
+  padding: 10px;
+}
+
+body.dark-mode .navbar {
+  background-color: #121212 !important;
+  border-bottom: 1px solid #333;
+}
+
+body.dark-mode .navbar-collapse {
+  border-top: 1px solid #333;
+}
+
+body.dark-mode .navbar .nav-link,
+body.dark-mode .navbar .navbar-brand {
+  color: #f0f0f0 !important;
+}
+
+body.dark-mode .btn-outline-light {
+  border-color: #aaa;
+  color: #fff;
+}
+
+body.dark-mode .btn-outline-light:hover {
+  background-color: #333;
+  border-color: #ccc;
+}
+
+body.dark-mode .dropdown-menu {
+  background-color: #2c2c2c;
+  border: 1px solid #444;
+}
+
+body.dark-mode .dropdown-item {
+  color: #f0f0f0;
+}
+
+body.dark-mode .dropdown-item:hover {
+  background-color: #3c3c3c;
+}
+
+.profile-card,
+.booking-card,
+.admin-box {
+  background: #ffffff;
+  border: 1px solid #dee2e6;
+  border-radius: 12px;
+  color: #212529;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 15px;
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode .profile-card,
+body.dark-mode .booking-card,
+body.dark-mode .admin-box {
+  background-color: #2a2a2a !important;
+  border: 1px solid #444;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
+  color: #f0f0f0 !important;
+}
+
+.profile-card h2,
+.booking-card h2,
+.admin-box h2 {
+  color: inherit;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.profile-card p,
+.booking-card p,
+.profile-card strong,
+.booking-card strong {
+  color: inherit !important;
+  font-weight: 400;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.booking-card h4 {
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.status-booked {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.status-cancelled {
+  color: #dc3545;
+  font-weight: bold;
+}
