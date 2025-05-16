@@ -1,5 +1,5 @@
 {
-<<<<<<< HEAD
+
   "name": "eventmanagementreact",
   "version": "1.0.0",
   "description": "Project",
@@ -142,7 +142,7 @@
     "concurrently": "^9.1.2",
     "cross-env": "^7.0.3"
   }
-=======
+
   "name": "client",
   "version": "0.1.0",
   "private": true,
